@@ -1,0 +1,17 @@
+Science Domain Routing Table
+============================
+
+life → Life Science (生命科学)
+  Keywords: animal, plant, living, grow, seed, flower, food chain, habitat, ecosystem, photosynthesis, cell, body, inherit, evolve, adapt
+
+physical → Physical Science (物理科学)
+  Keywords: force, push, pull, motion, speed, gravity, friction, energy, heat, light, sound, wave, magnet, electric, circuit, battery
+
+earth → Earth & Space Science (地球与太空)
+  Keywords: rock, mineral, soil, weather, climate, rain, snow, water cycle, sun, moon, star, planet, solar system, season, earthquake, volcano
+
+matter → Matter & Chemistry (物质与变化)
+  Keywords: solid, liquid, gas, matter, atom, molecule, element, chemical, reaction, dissolve, acid, base, pH, density, melt, freeze, boil
+
+inquiry → Science Inquiry (科学探究)
+  Keywords: experiment, hypothesis, predict, observe, measure, data, variable, control, test, investigate, discover, classify, microscope

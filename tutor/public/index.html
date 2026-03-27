@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小学科学乐园 — 快乐学科学</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Auth Screen (Register / Login) -->
+  <div id="auth-screen">
+    <div class="login-card">
+      <div class="login-mascot">🔬</div>
+      <h1>科学乐园</h1>
+      <p class="subtitle">快乐学科学！— 1-5年级</p>
+
+      <!-- Login Form (default) -->
+      <div id="auth-login" class="auth-panel">
+        <div class="auth-field">
+          <label for="login-phone">手机号</label>
+          <input type="tel" id="login-phone" placeholder="请输入手机号" autocomplete="tel" inputmode="numeric">
+        </div>
+        <div class="auth-field">
+          <label for="login-password">密码</label>
+          <input type="password" id="login-password" placeholder="请输入密码" autocomplete="current-password">
+        </div>
+        <button id="login-btn" class="auth-btn">登 录</button>
+        <p class="auth-switch">还没有账号？<a href="#" id="show-register">立即注册</a></p>
+      </div>
+
+      <!-- Register Form -->
+      <div id="auth-register" class="auth-panel" style="display:none;">
+        <div class="auth-field">
+          <label for="reg-phone">手机号</label>
+          <input type="tel" id="reg-phone" placeholder="请输入手机号" autocomplete="tel" inputmode="numeric">
+        </div>
+        <div class="auth-field">
+          <label for="reg-password">密码</label>
+          <input type="password" id="reg-password" placeholder="至少6位" autocomplete="new-password">
+        </div>
+        <div class="auth-field">
+          <label for="reg-name">名字 <span class="auth-optional">选填</span></label>
+          <input type="text" id="reg-name" placeholder="你叫什么名字呀？" autocomplete="name">
+        </div>
+        <button id="register-btn" class="auth-btn">注 册</button>
+        <p class="auth-switch">已有账号？<a href="#" id="show-login">返回登录</a></p>
+      </div>
+
+      <p class="auth-error" id="auth-error"></p>
+    </div>
+
+    <div class="login-deco deco-1">🧫</div>
+    <div class="login-deco deco-2">🌡️</div>
+    <div class="login-deco deco-3">🔭</div>
+    <div class="login-deco deco-4">⚗️</div>
+    <div class="login-deco deco-5">🧲</div>
+    <div class="login-deco deco-6">🌿</div>
+  </div>
+
+  <!-- Setup Screen (choose grade + tutor after login) -->
+  <div id="login-screen" style="display:none;">
+    <div class="login-card">
+      <div class="login-mascot">🔬</div>
+      <h1>科学乐园</h1>
+      <p class="subtitle" id="welcome-subtitle">选择你的老师，一起快乐探索科学吧！</p>
+      <input type="text" id="login-name" placeholder="你叫什么名字呀？" autocomplete="off">
+      <select id="login-grade">
+        <option value="grade-1">1年级</option>
+        <option value="grade-2">2年级</option>
+        <option value="grade-3" selected>3年级</option>
+        <option value="grade-4">4年级</option>
+        <option value="grade-5">5年级</option>
+      </select>
+
+      <div class="tutor-selection">
+        <p class="tutor-selection-label">选一位你喜欢的老师</p>
+        <div class="tutor-cards">
+          <div class="tutor-card selected" data-tutor="methodical">
+            <div class="tutor-avatar">🦉</div>
+            <div class="tutor-name">猫头鹰博士</div>
+            <div class="tutor-style">耐心引导型</div>
+            <div class="tutor-desc">慢慢观察，一步步发现</div>
+          </div>
+          <div class="tutor-card" data-tutor="competitive">
+            <div class="tutor-avatar">🦁</div>
+            <div class="tutor-name">火箭狮</div>
+            <div class="tutor-style">闯关挑战型</div>
+            <div class="tutor-desc">一起闯关，赢得勋章！</div>
+          </div>
+          <div class="tutor-card" data-tutor="creative">
+            <div class="tutor-avatar">🦊</div>
+            <div class="tutor-name">狐博士</div>
+            <div class="tutor-style">故事探索型</div>
+            <div class="tutor-desc">用故事和实验学科学</div>
+          </div>
+        </div>
+      </div>
+
+      <button id="start-btn">开始探索！</button>
+    </div>
+
+    <div class="login-deco deco-1">🧫</div>
+    <div class="login-deco deco-2">🌡️</div>
+    <div class="login-deco deco-3">🔭</div>
+    <div class="login-deco deco-4">⚗️</div>
+    <div class="login-deco deco-5">🧲</div>
+    <div class="login-deco deco-6">🌿</div>
+  </div>
+
+  <!-- App Screen -->
+  <div id="app-screen">
+    <div class="app-layout">
+
+      <!-- Top Bar -->
+      <div class="top-bar">
+        <span class="logo">科学乐园 <small style="font-size:11px;color:var(--text-muted);font-weight:400;">v1.0</small></span>
+        <span class="student-info" id="student-info"></span>
+        <div class="domain-nav">
+          <button class="domain-btn" data-domain="life"><span class="domain-icon">🌱</span> 生命</button>
+          <button class="domain-btn" data-domain="physical"><span class="domain-icon">🚀</span> 物理</button>
+          <button class="domain-btn" data-domain="earth"><span class="domain-icon">🌍</span> 地球</button>
+          <button class="domain-btn" data-domain="matter"><span class="domain-icon">🧪</span> 物质</button>
+          <button class="domain-btn" data-domain="inquiry"><span class="domain-icon">🔬</span> 探究</button>
+        </div>
+        <button class="lab-toggle-btn" id="lab-toggle-btn" title="科学实验室">🧪 实验室</button>
+        <button class="lab-toggle-btn" id="account-toggle-btn" title="我的账户">👤 账户</button>
+      </div>
+
+      <!-- Account Settings Panel (overlay) -->
+      <div class="account-panel" id="account-panel" style="display:none;">
+        <div class="account-panel-inner">
+          <div class="account-header">
+            <h2>👤 我的账户</h2>
+            <button class="lab-close-btn" id="account-close-btn">关闭</button>
+          </div>
+          <div class="account-body">
+            <div class="account-section">
+              <h3>个人信息</h3>
+              <div class="account-field"><span class="label">手机号</span><span class="value" id="acct-phone">—</span></div>
+              <div class="account-field"><span class="label">姓名</span><span class="value" id="acct-name">—</span></div>
+              <div class="account-field"><span class="label">年级</span><span class="value" id="acct-grade">—</span></div>
+              <div class="account-field"><span class="label">AI 助教</span><span class="value" id="acct-eclaw">—</span></div>
+            </div>
+            <div class="account-section">
+              <h3>学习统计</h3>
+              <div class="account-field"><span class="label">总练习数</span><span class="value" id="acct-total-ex">0</span></div>
+              <div class="account-field"><span class="label">总正确数</span><span class="value" id="acct-total-correct">0</span></div>
+              <div class="account-field"><span class="label">最佳连对</span><span class="value" id="acct-best-streak">0</span></div>
+            </div>
+            <div class="account-section">
+              <h3>订阅套餐</h3>
+              <div class="account-field"><span class="label">状态</span><span class="value" id="acct-sub-status">未订阅</span></div>
+              <div class="account-field"><span class="label">到期时间</span><span class="value" id="acct-sub-expires">—</span></div>
+              <div id="plan-cards" class="plan-cards"></div>
+            </div>
+            <button class="auth-btn logout-btn" id="logout-btn">退出登录</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Panel -->
+      <div class="chat-panel">
+        <div class="chat-messages" id="chat-messages">
+          <div class="typing-indicator" id="typing">
+            <div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <div class="chat-input-row">
+            <input type="text" id="chat-input" placeholder="输入你的答案或问题..." autocomplete="off">
+            <button id="send-btn">发送</button>
+          </div>
+          <div class="quick-actions">
+            <button class="quick-btn" data-msg="查看我的进度">🌟 进度</button>
+            <button class="quick-btn" data-msg="我接下来学什么？">🚀 下一步</button>
+            <button class="quick-btn" data-msg="给我一个提示">💡 提示</button>
+            <button class="quick-btn" data-msg="开始实验">🧪 实验</button>
+            <button class="quick-btn" data-msg="做一个CER探究">🔍 探究</button>
+            <button class="quick-btn" data-msg="复习到期的知识点">📖 复习</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Science Lab Panel -->
+      <div class="lab-panel" id="lab-panel">
+        <div class="lab-header">
+          <h2>🔬 科学实验室</h2>
+          <div class="lab-search-wrap">
+            <input type="text" id="lab-search" placeholder="搜索实验..." autocomplete="off">
+          </div>
+          <button class="lab-close-btn" id="lab-close-btn">返回对话</button>
+        </div>
+        <div class="lab-topics" id="lab-topics">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <!-- Sim overlay (fullscreen iframe) -->
+      <div class="sim-overlay" id="sim-overlay">
+        <div class="sim-overlay-bar">
+          <span class="sim-overlay-title" id="sim-overlay-title"></span>
+          <button class="sim-overlay-close" id="sim-overlay-close" title="关闭">✕</button>
+        </div>
+        <iframe id="sim-frame" allowfullscreen></iframe>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-avatar" id="sidebar-avatar">🦉</div>
+        <h2>你的进度</h2>
+        <div id="mastery-bars"></div>
+
+        <h3>当前会话</h3>
+        <div class="session-info" id="session-info">
+          <div class="session-stat">
+            <span class="label">模块</span>
+            <span class="value" id="info-module">—</span>
+          </div>
+          <div class="session-stat">
+            <span class="label">知识点</span>
+            <span class="value" id="info-skill">—</span>
+          </div>
+          <div class="session-stat">
+            <span class="label">阶段</span>
+            <span class="value" id="info-phase">—</span>
+          </div>
+          <div class="session-stat">
+            <span class="label">连对</span>
+            <span class="value" id="info-streak">0</span>
+          </div>
+        </div>
+
+        <h3>最近成绩</h3>
+        <div id="recent-results"></div>
+
+        <div class="reward-section" id="reward-section">
+          <h3>我的勋章</h3>
+          <div class="rewards" id="rewards">
+            <!-- populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment QR Code Modal -->
+  <div class="pay-modal-overlay" id="pay-modal" style="display:none">
+    <div class="pay-modal">
+      <button class="pay-modal-close" id="pay-modal-close">&times;</button>
+      <h3 id="pay-modal-title">扫码支付</h3>
+      <div class="pay-qr-wrap">
+        <img id="pay-qr-img" alt="支付二维码">
+      </div>
+      <p class="pay-order-id" id="pay-order-id"></p>
+      <p class="pay-status" id="pay-status">等待扫码支付...</p>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "el-science",
+  "version": "1.0.0",
+  "description": "Elementary School Science Tutor + Interactive Science Lab (Grades 1-5)",
+  "main": "server.js",
+  "scripts": {
+    "start": "cd tutor && node server.js",
+    "lab": "node server.js"
+  },
+  "keywords": [
+    "science",
+    "tutor",
+    "elementary",
+    "phet",
+    "interactive"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.22.1"
+  }
+}
