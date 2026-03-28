@@ -80,7 +80,7 @@ app.use((req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 3903;
+const PORT = process.env.PORT || 3920;
 app.listen(PORT, () => {
   console.log(`EL Science Lab server running at http://localhost:${PORT}`);
 });

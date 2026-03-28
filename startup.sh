@@ -3,7 +3,7 @@
 
 cd "$(dirname "$0")/tutor" || exit 1
 
-PORT="${PORT:-3903}"
+PORT="${PORT:-3920}"
 
 # Start the server in the background
 node server.js &
